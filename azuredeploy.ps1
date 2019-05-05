@@ -3,6 +3,7 @@
 New-AzureRmResourceGroup `
     -Name $resourceGroupName `
     -Location 'Central US' `
+    -Force `
     -Verbose
 
 New-AzureRmResourceGroupDeployment `
@@ -10,6 +11,7 @@ New-AzureRmResourceGroupDeployment `
     -Mode Complete `
     -TemplateFile '~\Repositories\Personal\GitHub\dotnet-core-api-azure-deploy-demo\azuredeploy.json' `
     -OutVariable deployment `
+    -Force `
     -Verbose
 
 if ($deployment.ProvisioningState -ne 'Succeeded') {

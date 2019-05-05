@@ -12,8 +12,8 @@
             "location": "[resourceGroup().location]",
             "name": "[variables('appServicePlanName')]",
             "sku": {
-                "tier": "Basic",
-                "name": "F0"
+                "tier": "Standard",
+                "name": "S1"
             }
         },
         {
@@ -34,6 +34,25 @@
             },
             "dependsOn": [
                 "[concat('Microsoft.Web/serverfarms/', variables('appServicePlanName'))]"
+            ]
+        },
+        {
+            "type": "Microsoft.Web/sites/slots",
+            "apiVersion": "2018-02-01",
+            "location": "[resourceGroup().location]",
+            "name": "[concat(resourceGroup().name, '/ondeck')]",
+            "properties": {
+                "siteConfig": {
+                    "appSettings": [
+                        {
+                            "name": "KEY",
+                            "value": "VALUE"
+                        }
+                    ]
+                }
+            },
+            "dependsOn": [
+                "[concat('Microsoft.Web/sites/', resourceGroup().name)]"
             ]
         }
     ],
