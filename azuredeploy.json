@@ -15,6 +15,26 @@
                 "tier": "Basic",
                 "name": "F0"
             }
+        },
+        {
+            "type": "Microsoft.Web/sites",
+            "apiVersion": "2015-08-01",
+            "location": "[resourceGroup().location]",
+            "name": "[resourceGroup().name]",
+            "properties": {
+                "serverFarmId": "[resourceId('Microsoft.Web/serverfarms', variables('appServicePlanName'))]",
+                "siteConfig": {
+                    "appSettings": [
+                        {
+                            "name": "KEY",
+                            "value": "VALUE"
+                        }
+                    ]
+                }
+            },
+            "dependsOn": [
+                "[concat('Microsoft.Web/serverfarms/', variables('appServicePlanName'))]"
+            ]
         }
     ],
     "outputs": {}
