@@ -33,7 +33,6 @@ steps:
   displayName: 'Publish Application'
   inputs:
     command: publish
-    publishWebProjects: true
     projects: '**/HelloWorld.csproj'
     arguments: '-c Release --o $(Build.ArtifactStagingDirectory)'
     zipAfterPublish: true
