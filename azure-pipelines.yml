@@ -1,0 +1,42 @@
+trigger:
+- master
+pool:
+  vmImage: windows-2019
+steps:
+- task: DotNetCoreCLI@2
+  displayName: Restore
+  inputs:
+    command: restore
+    projects: '**/*.csproj'
+
+- task: DotNetCoreCLI@2
+  displayName: Build
+  inputs:
+    command: build
+    projects: '**/HelloWorld.csproj'
+    arguments: '-c Release'
+
+- task: DotNetCoreCLI@2
+  displayName: Test
+  inputs:
+    command: test
+    projects: '**/HelloWorld.UnitTests.csproj'
+    arguments: '--logger trx --collect "Code coverage"'
+
+- task: PublishTestResults@2
+  displayName: 'Publish Test Results'
+  inputs:
+    testRunner: VSTest
+    testResultsFiles: '**/*.trx'
+
+- task: DotNetCoreCLI@2
+  displayName: 'Publish Application'
+  inputs:
+    command: publish
+    publishWebProjects: true
+    projects: '**/HelloWorld.csproj'
+    arguments: '-c Release --o $(Build.ArtifactStagingDirectory)'
+    zipAfterPublish: true
+
+- task: PublishBuildArtifacts@1
+  displayName: 'Publish Build Artifacts'
