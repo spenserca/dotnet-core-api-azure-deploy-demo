@@ -23,19 +23,12 @@ steps:
     projects: '**/HelloWorld.UnitTests.csproj'
     arguments: '--logger trx --collect "Code coverage"'
 
-- task: PublishTestResults@2
-  displayName: 'Publish Test Results'
-  inputs:
-    testRunner: VSTest
-    testResultsFiles: '**/*.trx'
-
 - task: DotNetCoreCLI@2
   displayName: 'Publish Application'
   inputs:
     command: publish
     projects: '**/HelloWorld.csproj'
-    arguments: '-c Release --o $(Build.ArtifactStagingDirectory)'
-    zipAfterPublish: true
+    arguments: '-c Release -o $(Build.ArtifactStagingDirectory)'
 
 - task: PublishBuildArtifacts@1
   displayName: 'Publish Build Artifacts'
