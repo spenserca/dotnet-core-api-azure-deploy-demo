@@ -32,5 +32,14 @@ steps:
     arguments: '-c Release -o $(Build.ArtifactStagingDirectory)'
     zipAfterPublish: true
 
+- task: CopyFiles@2
+  displayName: 'Copy azuredeploy Resources'
+  inputs:
+    SourceFolder: '.'
+    Contents: 'azuredeploy.*'
+    TargetFolder: '$(Build.ArtifactStagingDirectory)'
+    CleanTargetFolder: true
+    OverWrite: true
+
 - task: PublishBuildArtifacts@1
   displayName: 'Publish Build Artifacts'
