@@ -38,7 +38,6 @@ steps:
     SourceFolder: '.'
     Contents: 'azuredeploy.*'
     TargetFolder: '$(Build.ArtifactStagingDirectory)'
-    CleanTargetFolder: true
     OverWrite: true
 
 - task: PublishBuildArtifacts@1
