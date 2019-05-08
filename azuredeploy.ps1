@@ -38,7 +38,7 @@ $publishingCredentials = Invoke-AzureRmResourceAction `
 # Deploy the zip to the ondeck slot
 $username = $publishingCredentials.properties.publishingUserName
 $password = $publishingCredentials.properties.publishingPassword
-$filePath = "$($pathToDrop)/package.zip"
+$filePath = "$($pathToDrop)/HelloWorld.zip"
 $apiUrl = "https://$($resourceGroupName)-ondeck.scm.azurewebsites.net/api/zipdeploy"
 $base64AuthInfo = [Convert]::ToBase64String([Text.Encoding]::ASCII.GetBytes(("{0}:{1}" -f $username, $password)))
 $userAgent = "powershell/1.0"
