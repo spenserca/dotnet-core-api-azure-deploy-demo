@@ -1,4 +1,7 @@
-﻿$resourceGroupName = 'dotnet-core-api-azure-deploy-demo'
+﻿param(
+  [string]pathToAzureDeployJson
+  [string]resourceGroupName
+)
 
 # Create Azure resource group
 New-AzureRmResourceGroup `
@@ -13,7 +16,7 @@ New-AzureRmResourceGroup `
 New-AzureRmResourceGroupDeployment `
     -ResourceGroupName $resourceGroupName `
     -Mode Complete `
-    -TemplateFile '$(System.DefaultWorkingDirectory)/_spenserca.dotnet-core-api-azure-deploy-demo/drop/azuredeploy.json' `
+    -TemplateFile $pathToAzureDeployJson `
     -OutVariable deployment `
     -Force `
     -Verbose
