@@ -1,6 +1,6 @@
 ﻿param(
-  [string]pathToAzureDeployJson,
-  [string]resourceGroupName
+  [string]$pathToAzureDeployJson,
+  [string]$resourceGroupName
 )
 
 # Create Azure resource group
