@@ -13,7 +13,7 @@ New-AzureRmResourceGroup `
 New-AzureRmResourceGroupDeployment `
     -ResourceGroupName $resourceGroupName `
     -Mode Complete `
-    -TemplateFile '$(Build.ArtifactStagingDirectory)\_spenserca.dotnet-core-api-azure-deploy-demo\azuredeploy.json' `
+    -TemplateFile '$(System.DefaultWorkingDirectory)/_spenserca.dotnet-core-api-azure-deploy-demo/drop/azuredeploy.json' `
     -OutVariable deployment `
     -Force `
     -Verbose
