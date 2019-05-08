@@ -1,5 +1,5 @@
 ﻿param(
-  [string]pathToAzureDeployJson
+  [string]pathToAzureDeployJson,
   [string]resourceGroupName
 )
 
