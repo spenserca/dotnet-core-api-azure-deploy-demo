@@ -6,17 +6,17 @@ namespace HelloWorld.UnitTests
 {
 	public class HeartbeatControllerTests
 	{
-		private readonly HeartbeatController underTest;
+		private readonly HeartbeatController _underTest;
 
 		public HeartbeatControllerTests()
 		{
-			underTest = new HeartbeatController();
+			_underTest = new HeartbeatController();
 		}
 
 		[Fact]
 		public void Get_ReturnsOkResponse()
 		{
-			var actual = underTest.Get();
+			var actual = _underTest.Get();
 
 			Assert.IsAssignableFrom<OkResult>(actual);
 		}
