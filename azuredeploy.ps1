@@ -28,8 +28,8 @@ if ($deployment.ProvisioningState -ne 'Succeeded') {
 # Get credentials to deploy the zip file
 $publishingCredentials = Invoke-AzureRmResourceAction `
     -ResourceGroupName $resourceGroupName `
-    -ResourceType Microsoft.Web/sites/slots/config `
-    -ResourceName "$($resourceGroupName)/ondeck/publishingcredentials" `
+    -ResourceType Microsoft.Web/sites/config `
+    -ResourceName "$($resourceGroupName)/publishingcredentials" `
     -Action list `
     -ApiVersion 2015-08-01 `
     -Force `
@@ -39,7 +39,7 @@ $publishingCredentials = Invoke-AzureRmResourceAction `
 $username = $publishingCredentials.properties.publishingUserName
 $password = $publishingCredentials.properties.publishingPassword
 $filePath = "$($pathToDrop)/HelloWorld.zip"
-$apiUrl = "https://$($resourceGroupName)-ondeck.scm.azurewebsites.net/api/zipdeploy"
+$apiUrl = "https://$($resourceGroupName).scm.azurewebsites.net/api/zipdeploy"
 $base64AuthInfo = [Convert]::ToBase64String([Text.Encoding]::ASCII.GetBytes(("{0}:{1}" -f $username, $password)))
 $userAgent = "powershell/1.0"
 Invoke-RestMethod `
